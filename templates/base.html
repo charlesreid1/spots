@@ -1,0 +1,33 @@
+{% include 'partials/head.html' %}
+{% include 'partials/navbar.html' %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        {% block page_heading %}
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="page-header">{% block page_title %}{% endblock %}</h2>
+                </div>
+            </div>
+            <!-- /.row -->
+        {% endblock %}
+
+        {% block page_content %}{% endblock %}
+
+        <hr>
+
+        {% block page_footer %}
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; 2018 Charles Reid, released under the <a href="https://creativecommons.org/choose/zero/">Creative Commons Zero</a> license</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </footer>
+        {% endblock %}
+
+{% include 'partials/foot.html' %}

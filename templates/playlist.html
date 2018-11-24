@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block page_title %}{{ playlist['name'] }}{% endblock %}
+{% block page_content %}
+
+            <!-- Projects Row -->
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <a href="{{ playlist['url'] }}">
+                        <img class="img-responsive playlist" src="{{ playlist['image'] }}" alt="playlist cover art">
+                    </a>
+                </div>
+
+                <div class="col-sm-9">
+
+                    <p class="lead">{{ playlist['description'] }}</p>
+
+                    <a href="{{ playlist['url'] }}" class="btn btn-large btn-success">Open in Spotify</a>
+
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <td>Title</td>
+                                <td>Artist</td>
+                                <td>Preview</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for item in playlist['items'] %}
+                        <tr>
+                            <td>{{ item['name'] }}</td>
+                            <td>{{ item['artist'] }}</td>
+                            <td>
+                                {% if item['url_listen'] %}
+                                <div class="vid-wrapper">
+                                    <video controls="" name="media" style="height: 30px; width: 300px; display: inline-block; vertical-align: middle;">
+                                        <source src="{{ item['url_listen'] }}" type="audio/mpeg">
+                                    </video>
+                                </div>
+                                {% else %}
+                                <p>&nbsp;</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+{% endblock %}

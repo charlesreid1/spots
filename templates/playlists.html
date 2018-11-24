@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block page_title %}charlesreid1 Spotify Playlists{% endblock %}
+{% block page_content %}
+
+            {% for playlist_row in playlists_items | batch(4) %}
+
+                <!-- Projects Row -->
+                <div class="row">
+
+                    {% for playlist in playlist_row %}
+
+                        <div class="col-md-3 portfolio-item">
+                            <div class="card">
+                                <a href="{{ playlist['id'] }}.html">
+                                    <img class="img-responsive playlist" src="{{ playlist['image'] }}" alt="">
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title"><a href="{{ playlist['id'] }}.html">{{ playlist['name'] }}</a></h4>
+                                    <p class="card-text"><i>{{ playlist['description'] }}</i></p>
+                                    <p class="card-text">{{ playlist['total'] }} tracks</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+                <!-- /.row -->
+
+            {% endfor %}
+
+
+{% endblock %}
