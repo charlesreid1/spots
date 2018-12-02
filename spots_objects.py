@@ -11,6 +11,9 @@ import spotipy.util as util
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+kwargkward = dict(
+        BASEURL = '/spots/'
+)
 
 class SpotifyMasterList(object):
     """
@@ -103,7 +106,8 @@ class SpotifyMasterList(object):
         output_dir = self.OUTPUT_DIR
         t = 'playlists.html'
         contents = env.get_template(t).render(
-                playlists_items = self.playlists
+                playlists_items = self.playlists,
+                **kwargkward
         )
         with open('%s/index.html'%(output_dir),'w') as f:
             f.write(contents)
@@ -116,7 +120,8 @@ class SpotifyMasterList(object):
         t = 'playlist.html'
         for playlist in self.playlists:
             contents = env.get_template(t).render(
-                    playlist = playlist
+                    playlist = playlist,
+                    **kwargkward
             )
             with open('%s/%s.html'%(output_dir,playlist['id']),'w') as f:
                 f.write(contents)
@@ -339,8 +344,8 @@ class SpotifyMasterList(object):
             ## If you want to shorten this process,
             ## for example for testing,
             ## add a break statement here.
-            #if (i+1)%10==0:
-            #    break
+            if (i+1)%10==0:
+                break
 
         # Store details in the details json file
         with open(json_file,'w') as f:
