@@ -344,8 +344,8 @@ class SpotifyMasterList(object):
             ## If you want to shorten this process,
             ## for example for testing,
             ## add a break statement here.
-            if (i+1)%10==0:
-                break
+            #if (i+1)%10==0:
+            #    break
 
         # Store details in the details json file
         with open(json_file,'w') as f:
