@@ -17,8 +17,8 @@ console = logging.StreamHandler()
 console.setLevel(logging.INFO)
 
 # turn off annoying irrelevant stuff
-logger = logging.getLogger('urllib3.connectionpool')
-logger.disabled=True
+annoying = logging.getLogger('urllib3.connectionpool')
+annoying.disabled=True
 
 
 def main():
@@ -30,7 +30,7 @@ def main():
         username = sys.argv[1]
     else:
         logging.info("Whoops, need your username!")
-        logging.info("usage: python try3.py [username]")
+        logging.info("usage: python spots.py [username]")
         sys.exit()
 
     # Spotify API permission scope
@@ -64,6 +64,5 @@ def main():
 
 
 if __name__=="__main__":
-    logging.info('hi')
     main()
 
