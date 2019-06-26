@@ -14,8 +14,19 @@
                 <div class="col-sm-9">
 
                     <p class="lead">{{ playlist['description'] }}</p>
+                    <p><b>{{ playlist['count'] }} tracks</b></p>
 
-                    <a href="{{ playlist['url'] }}" class="btn btn-large btn-success">Open in Spotify</a>
+                    <p>&nbsp;</p>
+
+                    <p>
+                    <a href="{{ playlist['uri'] }}" class="btn btn-large btn-success"><i class="fab fa-spotify"></i> Open in Spotify App</a>
+                    </p>
+
+                    <p>
+                    <a href="{{ playlist['url'] }}" class="btn btn-large btn-success"><i class="fa fa-globe"></i> Open in Spotify Web</a>
+                    </p>
+
+                    <p>&nbsp;</p>
 
                     <table class="table table-striped">
 
@@ -23,6 +34,7 @@
                             <tr>
                                 <td>Title</td>
                                 <td>Artist</td>
+                                <td>Spotify</td>
                                 <td>Preview</td>
                             </tr>
                         </thead>
@@ -32,6 +44,9 @@
                         <tr>
                             <td>{{ item['name'] }}</td>
                             <td>{{ item['artist'] }}</td>
+                            <td>
+                                <a href="{{ item['uri'] }}" class="btn btn-large btn-success"><i class="fab fa-spotify"></i></a>
+                            </td>
                             <td>
                                 {% if item['url_listen'] %}
                                 <div class="vid-wrapper">
