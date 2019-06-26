@@ -333,16 +333,16 @@ class SpotifyMasterList(object):
             deets = self.sp.user_playlist(
                     self.username,
                     pid,
-                    fields="id,name,tracks,images,description,external_urls"
+                    fields="id,name,tracks,images,description,uri,external_urls"
             )
-
+            
             logging.debug('extracting playlist details...')
             self.playlists.append(self._extract_details(deets))
 
             logging.debug('done processing playlist %d of %d'%(i+1, len(self.master_list)))
 
             ## If you want to shorten this process,
-            ## for example for testing,
+            ## for example for tests/testing,
             ## add a break statement here.
             #if (i+1)%10==0:
             #    break
@@ -361,6 +361,7 @@ class SpotifyMasterList(object):
         - descr
         - images
         - external_urls
+        - uri
         - tracks
         """
         # Extract everything we will need
@@ -376,6 +377,8 @@ class SpotifyMasterList(object):
         list_details['id']    = playlist_json['id']
         list_details['name']  = playlist_json['name']
         list_details['url']   = playlist_json['external_urls']['spotify']
+        list_details['uri']   = playlist_json['uri']
+        list_details['count'] = len(playlist_json['tracks']['items'])
 
         # image
         if playlist_json['images'] is not None:
@@ -402,6 +405,7 @@ class SpotifyMasterList(object):
             it['artist'] = ", ".join([j['name'] for j in p['track']['artists']])
             it['url_listen'] = p['track']['preview_url']
             it['url_spotify'] = p['track']['external_urls']['spotify']
+            it['uri'] = p['track']['uri']
             playlist_items.append(it)
 
         list_details['items'] = playlist_items
