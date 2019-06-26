@@ -11,9 +11,19 @@ import spotipy.util as util
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+# Keywords for use in the HTML template
+# (key is Jinja variable name,
+#  value is Jinja variable value)
+# 
 kwargkward = dict(
         BASEURL = '/spots/'
 )
+
+# Static variables
+IDS_JSON_FILE = 'master_list.json'
+DETAILS_JSON_FILE = 'master_list_details.json'
+OUTPUT_DIR = 'output'
+ASSETS_DIR = 'assets'
 
 class SpotifyMasterList(object):
     """
@@ -44,10 +54,11 @@ class SpotifyMasterList(object):
         # this stores the details of each playlist
         self.playlists = []
 
-        self.IDS_JSON_FILE = 'master_list.json'
-        self.DETAILS_JSON_FILE = 'master_list_details.json'
-        self.OUTPUT_DIR = 'output'
-        self.ASSETS_DIR = 'assets'
+        # static vars
+        self.IDS_JSON_FILE = IDS_JSON_FILE
+        self.DETAILS_JSON_FILE = DETAILS_JSON_FILE
+        self.OUTPUT_DIR = OUTPUT_DIR
+        self.ASSETS_DIR = ASSETS_DIR
 
 
 
@@ -426,15 +437,20 @@ class SpotifyMasterList(object):
             logging.debug('found json file %s, importing'%(json_file))
             # Details are stored in the details json file
             try:
+                # try to open the details json file
                 with open(json_file,'w') as f:
                     self.playlists = json.load(f)
                 logging.debug('successfully loaded json file %s'%(json_file))
             except io.UnsupportedOperation:
+                # error loading details json file,
+                # so make a new one
                 logging.debug('could not load json file %s'%(json_file))
                 subprocess.call(['rm',json_file])
                 logging.debug('empty json file %s, calling export playlist details'%(json_file))
                 self.export_playlist_details()
         else:
+            # no details json file,
+            # so make a new one
             logging.debug('no json file %s, calling export playlist details'%(json_file))
             self.export_playlist_details()
 
