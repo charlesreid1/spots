@@ -192,7 +192,7 @@ class SpotifyMasterList(object):
         logging.debug('getting every playlist from user %s'%(self.username))
 
         # Fencepost
-        step = 50
+        step = 200
 
         ############
         # Throttle API calls here
@@ -336,7 +336,7 @@ class SpotifyMasterList(object):
 
         # For each playlist id:
         for i, pid in enumerate(self.master_list):
-            
+
             logging.debug('now processing playlist %d of %d'%(i+1, len(self.master_list)))
 
             # Get the playlist details
