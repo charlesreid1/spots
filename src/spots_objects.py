@@ -5,25 +5,19 @@ import json
 import subprocess
 from html.parser import HTMLParser
 import logging
-
 import spotipy
-import spotipy.util as util
-
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-# Keywords for use in the HTML template
-# (key is Jinja variable name,
-#  value is Jinja variable value)
-# 
-kwargkward = dict(
-        BASEURL = '/spots/'
-)
 
 # Static variables
+JINJA_KWARGS = dict(
+    BASEURL = '/spots/'
+)
 IDS_JSON_FILE = 'master_list.json'
 DETAILS_JSON_FILE = 'master_list_details.json'
 OUTPUT_DIR = 'output'
 ASSETS_DIR = 'assets'
+
 
 class SpotifyMasterList(object):
     """
