@@ -1,8 +1,17 @@
-# include json
-# couple of lines
-# editable by human
-
+#!/usr/bin/env python
+"""
+Central entrypoint for spots
+"""
 import sys
+import logging
+
+pkg_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # noqa
+sys.path.insert(0, pkg_root)  # noqa
+
+import spots
+
+from src import 
+
 from spots_objects import SpotifyMasterList
 
 import spotipy
@@ -10,7 +19,6 @@ import spotipy.util as util
 
 from secrets import CLIENT_ID, CLIENT_SECRET
 
-import logging
 
 
 logging.basicConfig(level=logging.DEBUG)
