@@ -105,6 +105,8 @@ class SpotifyMasterList(object):
         if os.path.exists(self.OUTPUT_DIR) and overwrite is True:
             subprocess.call(['rm','-fr',self.OUTPUT_DIR])
             subprocess.call(['mkdir',self.OUTPUT_DIR])
+        else:
+            subprocess.call(['mkdir','-p',output_dir])
 
         assets_source = glob.glob('%s/*'%(self.ASSETS_DIR))
         assets_target = '%s/.'%(self.OUTPUT_DIR)
