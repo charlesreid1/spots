@@ -21,14 +21,6 @@ from secrets import CLIENT_ID, CLIENT_SECRET
 
 
 
-logging.basicConfig(level=logging.DEBUG)
-console = logging.StreamHandler()
-console.setLevel(logging.INFO)
-
-# turn off annoying irrelevant stuff
-annoying = logging.getLogger('urllib3.connectionpool')
-annoying.disabled=True
-
 
 def main():
 
