@@ -200,7 +200,7 @@ class SpotifyMasterList(object):
         # Throttle API calls here
         ############
 
-        logging.debug('first 50 api call')
+        logging.debug(f'first {step} api call')
         response = self.sp.user_playlists(
                 self.username,
                 limit=step,
@@ -417,7 +417,10 @@ class SpotifyMasterList(object):
             it['name'] = p['track']['name']
             it['artist'] = ", ".join([j['name'] for j in p['track']['artists']])
             it['url_listen'] = p['track']['preview_url']
-            it['url_spotify'] = p['track']['external_urls']['spotify']
+            try:
+                it['url_spotify'] = p['track']['external_urls']['spotify']
+            except KeyError:
+                it['url_spotify'] = '#'
             it['uri'] = p['track']['uri']
             playlist_items.append(it)
 
