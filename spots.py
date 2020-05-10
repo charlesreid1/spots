@@ -22,26 +22,37 @@ annoying = logging.getLogger('urllib3.connectionpool')
 annoying.disabled=True
 
 
+def usage():
+    logging.info("Whoops, need your username and an action!")
+    logging.info("usage: python spots.py [username] [action]")
+    logging.info("action = extract | load")
+    sys.exit()
+
+
 def main():
 
-    if len(sys.argv) > 1:
-        username = sys.argv[1]
-    else:
-        logging.info("Whoops, need your username!")
-        logging.info("usage: python spots.py [username]")
-        sys.exit()
+    if len(sys.argv) != 3:
+        usage()
+
+    username = sys.argv[1]
+    action = sys.argv[2]
+
+    if action not in ['extract', 'create']:
+        usage()
     
     ml = make_master_list(username)
 
-    # Step 1: dump to master list json
-    ml.export_ids_list_to_file()
+    if action == "extract":
+        # Step 1: extract api info to master list json
+        ml.export_ids_list_to_file()
 
     # Step 2: edit the master list json file directly...
 
-    ## Step 3: create the static site
-    ## (this will make master list details json file)
-    #logging.debug('calling MasterList.static_site()')
-    #ml.static_site('site')
+    if action == "create":
+        # Step 3: create the static site
+        # (this will make master list details json file)
+        logging.debug('calling MasterList.static_site()')
+        ml.static_site('site')
 
 
 def make_master_list(username):
