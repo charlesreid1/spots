@@ -15,14 +15,22 @@ The first step is to extract a list of all playlists,
 playlist art, and descriptions, to compile and let the
 user select which playlists they are interested in.
 
-Use the API to extract this information.
+To run the extract step with a spotify username:
 
-Export to a file (just a list of playlist IDs?).
+```
+python spots.py [username] extract
+```
 
-## Step 2: Create Static Site
+## Step 2: Edit Playlist Data
 
-Create a static site using the spotify playlist IDs specified by the user.
+The prior step will output a `master_list.json` containing info about
+each of the user's playlists. This JSON list can be edited to remove
+any playlists that should not be included in the static site.
 
-Read a list of playlist IDs from a file
+## Step 3: Create Static Site
 
+Create a static site using the spotify playlist IDs specified by the user:
 
+```
+python spots.py [username] create
+```
