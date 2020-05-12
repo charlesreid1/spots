@@ -52,7 +52,7 @@ def main():
         # Step 3: create the static site
         # (this will make master list details json file)
         logging.debug('calling MasterList.static_site()')
-        ml.static_site('site')
+        ml.static_site()
 
 
 def make_master_list(username):

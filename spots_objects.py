@@ -72,7 +72,6 @@ class SpotifyMasterList(object):
         """
         Create all the pages
         """
-        json_file = self.DETAILS_JSON_FILE
         output_dir = self.OUTPUT_DIR
 
         # populate self.playlists
