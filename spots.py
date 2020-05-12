@@ -25,7 +25,7 @@ annoying.disabled=True
 def usage():
     logging.info("Whoops, need your username and an action!")
     logging.info("usage: python spots.py [username] [action]")
-    logging.info("action = extract | load")
+    logging.info("action = extract | create")
     sys.exit()
 
 
