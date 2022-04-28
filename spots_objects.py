@@ -3,7 +3,7 @@ import io
 import os
 import json
 import subprocess
-from html.parser import HTMLParser
+import html
 import logging
 
 import spotipy
@@ -250,7 +250,7 @@ class SpotifyMasterList(object):
 
                 # Playlist description
                 if 'description' in results.keys() and results['description'] is not None:
-                    pdescr = HTMLParser().unescape(results['description'])
+                    pdescr = html.unescape(results['description'])
                 else:
                     pdescr = ""
 
@@ -399,7 +399,7 @@ class SpotifyMasterList(object):
 
         # description
         if 'description' in playlist_json.keys() and playlist_json['description'] is not None:
-            list_details['description'] = HTMLParser().unescape(playlist_json['description'])
+            list_details['description'] = html.unescape(playlist_json['description'])
         else:
             list_details['description'] = ''
 
