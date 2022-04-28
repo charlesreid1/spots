@@ -13,7 +13,7 @@ from secrets import CLIENT_ID, CLIENT_SECRET
 import logging
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 console = logging.StreamHandler()
 console.setLevel(logging.INFO)
 
