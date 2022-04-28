@@ -38,8 +38,41 @@ If the above step results in an invalid (old) token, remove the file `.cache-<us
 ## Step 2: Edit Playlist Data
 
 Step 1 will result in a `master_list.json` containing info about
-each of the user's playlists. This JSON list can be modified by hand
-to remove any playlists to be excluded from the final site.
+each of the user's playlists.
+
+The next step will use the data in `master_list.json` to generate
+a static site containing a list of all the Spotify playlists in
+`master_list.json`.
+
+Before running that step, `master_list.json` can/should be edited
+to filter any playlists that should be excluded from the final
+static site.
+
+### Workflow
+
+We typically store the original `master_list.json` and an edited
+`master_list_edited.json` in a folder named `master_list_YYYY-MM`.
+
+The `master_list_edited.json` is edited by hand to contain only
+the playlists to end up on the final page.
+
+`mster_list_YYYY-MM/master_list_edited.json` is then copied BACK
+to `master_list.json` in the repo root directory, before the next
+step, the `create` action, is run.
+
+### What if no editing is necessary?
+
+If no editing of the list of playslists is necessary, then the
+`master_list.json` file can be used as generated in Step 1.
+
+### Checking `master_list.json`
+
+Make sure and lint the JSON file before running Step 3. This can be
+done with Python:
+
+```
+$ python -m json.tool master_list.json
+```
 
 ## Step 3: Create Static Site
 
@@ -49,6 +82,8 @@ by calling `spots` with the `create` action:
 ```
 python spots.py [username] create
 ```
+
+This will generate the site into the directory specified by `OUTPUT_DIR` in `spots_objects.py`.
 
 ## Deploy Strategy
 
