@@ -73,13 +73,12 @@ class SpotifyMasterList(object):
         Create all the pages
         """
         output_dir = self.OUTPUT_DIR
+        if os.path.exists(output_dir) and overwrite is False:
+            raise Exception("Error: output dir %s already exists!"%(output_dir))
 
         # populate self.playlists
         logging.debug('importing playlist details')
         self.import_playlist_details()
-
-        if os.path.exists(output_dir) and overwrite is False:
-            raise Exception("Error: output dir %s already exists!"%(output_dir))
 
         # Jinja env
         env = Environment(
